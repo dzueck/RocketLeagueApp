@@ -11,7 +11,7 @@
         "author": "Author name",
         "icon": "TempImage.png",
         "icon_gray": "TempImage.png",
-        "launcher_icon": "icon.ico",
+        "launcher_icon": "TempIcon.ico",
         "splash_image": "TempImage.png",
         "description": "A plain text description"
     },
