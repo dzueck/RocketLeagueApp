@@ -2,12 +2,12 @@
     "manifest_version": 1,
     "type": "WebAp",
     "meta": {
-        "name": "Demo_App",
+        "name": "Rocket League Clock Catcher",
         "version": "1.0.0",
-        "author": "Developer_Name",
+        "author": "Dylan Zueck & Carter Askins",
         "icon": "TempImage.png",
         "icon_gray": "TempImage.png",
-        "description": "Demo App"
+        "description": "Collects cool time and score combinations after scoring in Rocket League."
     },
     "data": {
         "start_window": "MainWindow",
