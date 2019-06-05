@@ -1,25 +1,28 @@
 {
     "manifest_version": 1,
-    "type": "WebAp",
+    "type": "WebApp",
     "meta": {
         "name": "Rocket League Clock Catcher",
         "version": "1.0.0",
+		"minimum-overwolf-version": "0.0.0",//This needs to be changed to aactual min
         "author": "Dylan Zueck & Carter Askins",
-        "icon": "TempImage.png",
-        "icon_gray": "TempImage.png",
+        "icon": "TempImage.png",//temp image
+        "icon_gray": "TempImage.png",//temp image
         "description": "Collects cool time and score combinations after scoring in Rocket League."
     },
     "data": {
-        "start_window": "MainWindow",
+        "start_window": "Time Catcher",
         "windows": {
-            "MainWindow": {
+            "Time Catcher": {
                 "file": "Important_Files/Temp.html",
-                "transparent": true,
+				"show_in_taskbar": true,
+                "transparent": false,
                 "resizable": true,
                 "size": {"width": 400, "height": 300},
                 "min_size": {"width": 200, "height": 200},
                 "max_size": {"width": 600, "height": 500}
             }
+			
         }
     }
 }

@@ -1,0 +1,8 @@
+save cool score and time combonations
+add special cases such as :
+	pi, grams number, 
+press hotkey to save current combo in personly saved section.
+give points for combos changing point amounts 
+save combos between sessions.
+add compedative tag if gotten in compedative and award more points or only points for compedative
+have a way to sort by time gotten, compedative only, point value, stuff like that
