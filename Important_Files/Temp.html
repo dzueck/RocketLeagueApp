@@ -1,1 +1,24 @@
-Where is this 
+<html>
+	<head>
+	
+	</head>
+
+	<body>
+	<p id="demo"></p>
+		<script>
+		
+		
+				
+			var g_interestedInFeatures = [
+			  'goal'
+			];
+			overwolf.games.events.setRequiredFeatures(g_interestedInFeatures, function(info) {
+				console.log(info);
+			});
+			overwolf.games.events.onNewEvents.addListener(function(info) {
+				console.log('EVENT FIRED: ' + JSON.stringify(info));
+				
+			});
+		</script>
+	</body>
+</html>

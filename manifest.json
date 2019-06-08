@@ -12,6 +12,7 @@
     },
     "data": {
         "start_window": "Time Catcher",
+		"game_events": [10798],
         "windows": {
             "Time Catcher": {
                 "file": "Important_Files/Temp.html",
