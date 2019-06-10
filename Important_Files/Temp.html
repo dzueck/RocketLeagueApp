@@ -8,40 +8,47 @@
 	<p id="demo"></p>
 		<script>
 		
-		
+		//typeof
 				//this actualy works now
-			var totalGoals = 0;
-			var g_interestedInFeatures = [
+			let totalGoals = 0;
+			const g_interestedInFeatures = [
 			  'stats',
 			  'match'
 			];
-			overwolf.games.events.setRequiredFeatures(g_interestedInFeatures, function(info) {
+			function setFeatures() {
+			  overwolf.games.events.setRequiredFeatures(g_interestedInFeatures, function(info) {
 				if (info.status == "error")
 				{
-				  //console.log("Could not set required features: " + info.reason);
+				  console.log("Could not set required features: " + info.reason);
 				  //console.log("Trying in 2 seconds");
 				  window.setTimeout(setFeatures, 2000);
 				  return;
 				}
-				console.log(info);
-			});
+
+				console.log("Set required features:");
+				console.log(JSON.stringify(info));
+			  });
+			}
+			setFeatures();
 			overwolf.games.events.onNewEvents.addListener(function(info) {
 				console.log('EVENT FIRED: ' + JSON.stringify(info));
-				console.log('EVENT FIRED: ' + info);
-				console.log(getInfo());
+				
+				
 				
 				
 			});
-			overwolf.games.
+			
 			overwolf.games.events.onInfoUpdates2.addListener(function(infoUpdateChange) {
 				console.log('infoUpdate:'  + JSON.stringify(infoUpdateChange));
-				console.log('infoUpdate:'  + infoUpdateChange);
-				if(infoUpdateChange.gameState == "PostGoalScored"){
+				
+				if(infoUpdateChange.info.matchInfo.gameState == 'PostGoalScored'){
 					totalGoals ++;
 				}
-				console.log('Total Goals: ' + totalGoals);
+				console.log(overwolf.games.events.getInfo());
+				
 			});
 		</script>
+		<script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
 	</body>
 </html>
 
