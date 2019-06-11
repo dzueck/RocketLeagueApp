@@ -7,13 +7,14 @@
 	<body>
 	<p id="demo"></p>
 		<script>
-		
+		let myTeam = 0;
 		//typeof
 				//this actualy works now
 			let totalGoals = 0;
 			const g_interestedInFeatures = [
 			  'stats',
-			  'match'
+			  'match',
+			  'me'
 			];
 			function setFeatures() {
 			  overwolf.games.events.setRequiredFeatures(g_interestedInFeatures, function(info) {
@@ -40,12 +41,22 @@
 			
 			overwolf.games.events.onInfoUpdates2.addListener(function(infoUpdateChange) {
 				console.log('infoUpdate:'  + JSON.stringify(infoUpdateChange));
-				
-				if(infoUpdateChange.info.matchInfo.gameState == 'PostGoalScored'){
-					totalGoals ++;
+				if ('matchInfo' in infoUpdateChange.info) {
+					if ('gameState' in infoUpdateChange.info.matchInfo) {
+						if(infoUpdateChange.info.matchInfo.gameState == 'PostGoalScored'){
+							totalGoals ++;
+						}
+					}
 				}
-				console.log(overwolf.games.events.getInfo());
-				
+				if ('me' in infoUpdateChange.info) {
+					if ('team' in infoUpdateChange.info.me) {
+						if(typeof infoUpdateChange.info.me.team == 'number'){
+							myTeam = infoUpdateChange.info.me.team;
+							console.log('Team Change detected');
+						}
+					}
+				}
+				console.log(myTeam);
 			});
 		</script>
 		<script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
