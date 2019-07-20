@@ -8,14 +8,21 @@
 	<p id="demo"></p>
 		<script>
 		let myTeam = 0;
-		//typeof
-				//this actualy works now
-			let totalGoals = 0;
+		let myGoals = 0;
+		let oposingGoals = 0;
+		let ranked = 'false';
+		
 			const g_interestedInFeatures = [
 			  'stats',
 			  'match',
 			  'me'
 			];
+			
+			/*
+			// do something with the response
+			response= runPyScript('data to process');
+			console.log(response);
+			*/
 			function setFeatures() {
 			  overwolf.games.events.setRequiredFeatures(g_interestedInFeatures, function(info) {
 				if (info.status == "error")
@@ -34,6 +41,18 @@
 			overwolf.games.events.onNewEvents.addListener(function(info) {
 				console.log('EVENT FIRED: ' + JSON.stringify(info));
 				
+				if ('name' in info.events[0]) {
+										
+					if(info.events[0].name === 'goal' || info.events[0].name === 'teamGoal' ){
+						myGoals ++;
+						
+					}
+					else if(info.events[0].name === 'opposingTeamGoal'){
+						oposingGoals ++;
+					}
+					console.log(`My goals: ${myGoals} Oposing Goals: ${oposingGoals}`);
+				}
+				
 				
 				
 				
@@ -41,23 +60,35 @@
 			
 			overwolf.games.events.onInfoUpdates2.addListener(function(infoUpdateChange) {
 				console.log('infoUpdate:'  + JSON.stringify(infoUpdateChange));
-				if ('matchInfo' in infoUpdateChange.info) {
-					if ('gameState' in infoUpdateChange.info.matchInfo) {
-						if(infoUpdateChange.info.matchInfo.gameState == 'PostGoalScored'){
-							totalGoals ++;
-						}
-					}
-				}
+				/*
 				if ('me' in infoUpdateChange.info) {
 					if ('team' in infoUpdateChange.info.me) {
-						if(typeof infoUpdateChange.info.me.team == 'number'){
-							myTeam = infoUpdateChange.info.me.team;
-							console.log('Team Change detected');
-						}
+						
+						myTeam = infoUpdateChange.info.me.team;
+						console.log('Team Change detected');
+						
 					}
 				}
 				console.log(myTeam);
+				*/
+				if ('matchInfo' in infoUpdateChange.info) {
+					if ('gameState' in infoUpdateChange.info.matchInfo) {
+						if(infoUpdateChange.info.matchInfo.gameState === 'Unknown' || infoUpdateChange.info.matchInfo.gameState === null || infoUpdateChange.info.matchInfo.gameState === 'Finished'){
+							oposingGoals = 0;
+							myGoals = 0;
+						}
+						
+					}
+				}
+				if ('matchInfo' in infoUpdateChange.info) {
+					if ('ranked' in infoUpdateChange.info.matchInfo) {
+						ranked = infoUpdateChange.info.matchInfo.ranked;
+						
+					}
+				}
+				console.log(ranked);
 			});
+			//infoUpdate:{"info":{"matchInfo":{"ranked":"true"}},"feature":"match"}
 		</script>
 		<script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
 	</body>

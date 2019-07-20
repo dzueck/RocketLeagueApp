@@ -19,9 +19,9 @@
 				"show_in_taskbar": true,
                 "transparent": true,
                 "resizable": true,
-                "size": {"width": 400, "height": 300},
-                "min_size": {"width": 200, "height": 200},
-                "max_size": {"width": 600, "height": 500}
+                "size": {"width": 1, "height": 1},
+                "min_size": {"width": 1, "height": 1},
+                "max_size": {"width": 2, "height": 2}
             }
 			
         }
